@@ -18,18 +18,18 @@
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <!--<parent>-->
-    <!--<groupId>org.wso2</groupId>-->
-    <!--<artifactId>wso2</artifactId>-->
-    <!--<version>1</version>-->
-    <!--</parent>-->
+    <parent>
+        <groupId>org.wso2</groupId>
+        <artifactId>wso2</artifactId>
+        <version>1</version>
+    </parent>
 
     <groupId>org.wso2.carbon.identity.agent.sso.java</groupId>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>identity-agent-saml-sso</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-    <name>WSO2 Carbon - SAML2 SSO - Agent</name>
+    <name>WSO2 Carbon - SAML2 SSO - Agent with Sample</name>
     <description>
 
     </description>
@@ -150,11 +150,6 @@
                 <version>${joda.wso2.version}</version>
             </dependency>
             <dependency>
-                <groupId>net.sf.ehcache.wso2</groupId>
-                <artifactId>ehcache</artifactId>
-                <version>${ehcache.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${javax.servlet-api.version}</version>
@@ -192,45 +187,21 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-scr-plugin</artifactId>
-                    <version>1.7.2</version>
-                    <executions>
-                        <execution>
-                            <id>generate-scr-scrdescriptor</id>
-                            <goals>
-                                <goal>scr</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.4.0</version>
-                    <extensions>true</extensions>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.1</version>
+                    <inherited>true</inherited>
                     <configuration>
-                        <obrRepository>NONE</obrRepository>
-                        <instructions>
-                            <SCM-Revision>${buildNumber}</SCM-Revision>
-                        </instructions>
+                        <encoding>UTF-8</encoding>
+                        <source>1.7</source>
+                        <target>1.7</target>
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>buildnumber-maven-plugin</artifactId>
-                    <version>${maven.buildnumber.plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <phase>validate</phase>
-                            <goals>
-                                <goal>create</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.1.1</version>
                     <configuration>
-                        <doCheck>false</doCheck>
-                        <doUpdate>false</doUpdate>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
                 </plugin>
             </plugins>
@@ -248,20 +219,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
             </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.1</version>
-                <inherited>true</inherited>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
 
@@ -274,7 +231,6 @@
         <opensaml2.wso2.version>2.6.4.wso2v3</opensaml2.wso2.version>
         <org.apache.oltu.oauth2.client.version>1.0.0</org.apache.oltu.oauth2.client.version>
         <openid4java.wso2.version>1.0.0.wso2v2</openid4java.wso2.version>
-        <ehcache.version>1.5.0.wso2v3</ehcache.version>
         <maven.buildnumber.plugin.version>1.4</maven.buildnumber.plugin.version>
         <joda.wso2.version>2.8.2.wso2v1</joda.wso2.version>
         <joda.wso2.osgi.version.range>[2.8.2,3.0.0)</joda.wso2.osgi.version.range>

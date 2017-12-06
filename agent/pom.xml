@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~ Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
   ~
   ~ WSO2 Inc. licenses this file to you under the Apache License,
   ~ Version 2.0 (the "License"); you may not use this file except
@@ -30,48 +30,12 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>WSO2 Carbon - SAML2 SSO Agent</name>
-    <description>
-
-    </description>
     <url>http://wso2.org</url>
-
-    <build>
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-release-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<preparationGoals>clean install</preparationGoals>-->
-                    <!--<autoVersionSubmodules>true</autoVersionSubmodules>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-deploy-plugin</artifactId>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                <!--<version>2.3.1</version>-->
-                <!--<inherited>true</inherited>-->
-                <!--<configuration>-->
-                    <!--<encoding>UTF-8</encoding>-->
-                    <!--<source>1.7</source>-->
-                    <!--<target>1.7</target>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>org.codehaus.mojo</groupId>-->
-                <!--<artifactId>buildnumber-maven-plugin</artifactId>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    </build>
 
     <modules>
         <module>components/org.wso2.carbon.identity.sso.agent</module>
-        <!--<module>features/org.wso2.carbon.identity.sso.agent.server.feature</module>-->
         <module>components/org.wso2.carbon.identity.sso.encryptor</module>
     </modules>
-
 </project>
 
 

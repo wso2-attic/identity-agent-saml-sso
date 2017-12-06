@@ -12,7 +12,7 @@ Process of including SAML SSO Agent to your web application can be described in 
 First Step: You have to provide the properties that you wish to use. For that you can add the .properties file to your 
 web application under the directory: src/main/resources. This properties
  file should include the relevant properties that are required to perform communication with wso2 identity server via
- SAML flow.(NOTE: you can define properties as context-params in your web.xml too)  
+ SAML flow. 
  
  ```
  NOTE: You can define properties as context-params in the web.xml too. However the effective set of properties have 
@@ -68,12 +68,7 @@ Third Step: Then you have to add the SAMLSSO Filter to your web application's we
  The pattern [/samlsso]() is used to initiate SAML flow with the agent. Then the [/samlcallback]() is used to map the 
  callback from the IDP( WSO2 Identity Server). [/samllogout]() is used to map the SAML logout request.
  
- TIP: these patterns([/samlsso](),[/samlcallback]() and [/samllogout]()) are assumed default values by the agent. If 
- you prefer to change those values you can easily do so by using either your .properties file or else use context-params in your web.xml.
- 
- 
 ## Sample web application with SAML Agent
 
 This repository contains a module called 'sample' which contains a simple sample web application the usage of SAML 
-SSO 
-Agent.
+SSO Agent. You can deploy the .war file in sample/target directory into tomcat server.

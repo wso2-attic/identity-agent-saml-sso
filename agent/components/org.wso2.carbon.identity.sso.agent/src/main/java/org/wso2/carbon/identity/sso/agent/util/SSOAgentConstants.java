@@ -38,7 +38,8 @@ public class SSOAgentConstants {
 
     public static class SAML2SSO {
 
-        private SAML2SSO() {}
+        private SAML2SSO() {
+        }
 
         public static final String HTTP_POST_PARAM_SAML2_AUTH_REQ = "SAMLRequest";
         public static final String HTTP_POST_PARAM_SAML2_RESP = "SAMLResponse";
@@ -47,18 +48,21 @@ public class SSOAgentConstants {
     public static class OpenID {
 
         public static final String OPENID_MODE = "openid.mode";
-        private OpenID() {}
+
+        private OpenID() {
+        }
 
     }
 
     public static class OAuth2 {
-        public static final String SAML2_BEARER_GRANT_TYPE =
-                "urn:ietf:params:oauth:grant-type:saml2-bearer";
+        public static final String SAML2_BEARER_GRANT_TYPE = "urn:ietf:params:oauth:grant-type:saml2-bearer";
 
-        private OAuth2() {}
+        private OAuth2() {
+        }
     }
 
-    private SSOAgentConstants() {}
+    private SSOAgentConstants() {
+    }
 
     public static class SSOAgentConfig {
 
@@ -73,8 +77,10 @@ public class SSOAgentConstants {
         public static final String SKIP_URIS = "SkipURIs";
         public static final String QUERY_PARAMS = "QueryParams";
         public static final String PASSWORD_FILEPATH = "/conf/password_temp.txt";
+        public static final String SAML_REQUEST_QUERY_PARAM = "SAML.Request.Query.Param";
 
-        private SSOAgentConfig() {}
+        private SSOAgentConfig() {
+        }
 
         public static class SAML2 {
 
@@ -83,28 +89,23 @@ public class SSOAgentConstants {
             public static final String ACS_URL = "SAML2.AssertionConsumerURL";
             public static final String IDP_ENTITY_ID = "SAML2.IdPEntityId";
             public static final String IDP_URL = "SAML2.IdPURL";
-            public static final String ATTRIBUTE_CONSUMING_SERVICE_INDEX =
-                    "SAML2.AttributeConsumingServiceIndex";
+            public static final String ATTRIBUTE_CONSUMING_SERVICE_INDEX = "SAML2.AttributeConsumingServiceIndex";
             public static final String ENABLE_SLO = "SAML2.EnableSLO";
             public static final String SLO_URL = "SAML2.SLOURL";
-            public static final String ENABLE_ASSERTION_SIGNING =
-                    "SAML2.EnableAssertionSigning";
-            public static final String ENABLE_ASSERTION_ENCRYPTION =
-                    "SAML2.EnableAssertionEncryption";
-            public static final String ENABLE_RESPONSE_SIGNING =
-                    "SAML2.EnableResponseSigning";
+            public static final String ENABLE_ASSERTION_SIGNING = "SAML2.EnableAssertionSigning";
+            public static final String ENABLE_ASSERTION_ENCRYPTION = "SAML2.EnableAssertionEncryption";
+            public static final String ENABLE_RESPONSE_SIGNING = "SAML2.EnableResponseSigning";
             public static final String ENABLE_REQUEST_SIGNING = "SAML2.EnableRequestSigning";
             public static final String IS_PASSIVE_AUTHN = "SAML2.IsPassiveAuthn";
             public static final String IS_FORCE_AUTHN = "SAML2.IsForceAuthn";
             public static final String RELAY_STATE = "SAML2.RelayState";
-            public static final String POST_BINDING_REQUEST_HTML_PAYLOAD =
-                    "SAML2.PostBindingRequestHTMLPayload";
-            public static final String POST_BINDING_REQUEST_HTML_FILE_PATH =
-                    "SAML2.PostBindingRequestHTMLFilePath";
+            public static final String POST_BINDING_REQUEST_HTML_PAYLOAD = "SAML2.PostBindingRequestHTMLPayload";
+            public static final String POST_BINDING_REQUEST_HTML_FILE_PATH = "SAML2.PostBindingRequestHTMLFilePath";
             public static final String SIGNATURE_VALIDATOR = "SAML2.SignatureValidatorImplClass";
             public static final String TIME_STAMP_SKEW = "SAML2.TimestampSkew";
 
-            private SAML2() {}
+            private SAML2() {
+            }
         }
 
         public static class OpenID {
@@ -115,7 +116,8 @@ public class SSOAgentConstants {
             public static final String ENABLE_ATTRIBUTE_EXCHANGE = "OpenId.EnableAttributeExchange";
             public static final String ENABLE_DUMB_MODE = "OpenId.EnableDumbMode";
 
-            private OpenID() {}
+            private OpenID() {
+            }
         }
 
         public static class OAuth2 {
@@ -124,9 +126,15 @@ public class SSOAgentConstants {
             public static final String CLIENT_SECRET = "OAuth2.ClientSecret";
             public static final String TOKEN_URL = "OAuth2.TokenURL";
 
-            private OAuth2() {}
+            private OAuth2() {
+            }
         }
 
+    }
+
+    public static class SSL {
+        public static final String ENABLE_SSL_VERIFICATION = "SSL.EnableSSLVerification";
+        public static final String ENABLE_SSL_HOST_NAME_VERIFICATION = "SSL.EnableSSLHostNameVerification";
     }
 
 }
