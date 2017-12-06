@@ -119,46 +119,46 @@ public class SAML2SSOAgentFilter implements Filter {
             } else if (resolver.isSAML2SSOURL()) {
 
                 samlSSOManager = new SAML2SSOManager(ssoAgentConfig);
-                AppRegistrationAndConfigBean regAndConfBean = new AppRegistrationAndConfigBean();
-                String spName = ssoAgentConfig.getSAML2().getSPEntityId();
-                RequestDispatcher requestDispatcher = null;
+//                AppRegistrationAndConfigBean regAndConfBean = new AppRegistrationAndConfigBean();
+//                String spName = ssoAgentConfig.getSAML2().getSPEntityId();
+//                RequestDispatcher requestDispatcher = null;
 
-                //check if the application is registerd in the IDP
-                if (!regAndConfBean.checkAppRegistrationStatus(spName)) {
-                    LOGGER.log(Level.INFO, "Application has not been Registered Yet!");
-                    if (ssoAgentConfig.isDynamicAppRegistrationEnabled()) {
-                        // do dynamic registration
-                        regAndConfBean.performDynamicAppRegistration(spName);
-                    } else {
-                        request.setAttribute("message", "Your Application is not yet registed with IDP. "
-                                + "Either register in IDP or enable dynamic Registraion from properties file!");
-                        requestDispatcher = request.getRequestDispatcher("index.jsp");
-                        requestDispatcher.forward(request, response);
-                        return;
-                    }
-                }
+//                //check if the application is registerd in the IDP
+//                if (!regAndConfBean.checkAppRegistrationStatus(spName)) {
+//                    LOGGER.log(Level.INFO, "Application has not been Registered Yet!");
+//                    if (ssoAgentConfig.isDynamicAppRegistrationEnabled()) {
+//                        // do dynamic registration
+//                        regAndConfBean.performDynamicAppRegistration(spName);
+//                    } else {
+//                        request.setAttribute("message", "Your Application is not yet registed with IDP. "
+//                                + "Either register in IDP or enable dynamic Registraion from properties file!");
+//                        requestDispatcher = request.getRequestDispatcher("index.jsp");
+//                        requestDispatcher.forward(request, response);
+//                        return;
+//                    }
+//                }
 
-                //check whether the app is configured to use SAML
-                if (!regAndConfBean.checkSAMLconfigurationStatus(spName)) {
-                    if (ssoAgentConfig.isDynamicSAMLConfigEnabled()) {
-                        // perform dynamic saml configuration
-                        String status = regAndConfBean.performDynamicSAMLConfiguration(ssoAgentConfig);
-                        if (!"updated".equals(status)) {
-                            request.setAttribute("message", status);
-                            requestDispatcher = request.getRequestDispatcher("index.jsp");
-                            requestDispatcher.forward(request, response);
-                            return;
-                        }
-                    } else {
-                        request.setAttribute("message", "Your Application has not yet configured to use SAML. "
-                                + "Either configure using management console or enable dynamic saml configuration from"
-                                + " properties file!");
-                        requestDispatcher = request.getRequestDispatcher("index.jsp");
-                        requestDispatcher.forward(request, response);
-                        return;
-                    }
-
-                }
+//                //check whether the app is configured to use SAML
+//                if (!regAndConfBean.checkSAMLconfigurationStatus(spName)) {
+//                    if (ssoAgentConfig.isDynamicSAMLConfigEnabled()) {
+//                        // perform dynamic saml configuration
+//                        String status = regAndConfBean.performDynamicSAMLConfiguration(ssoAgentConfig);
+//                        if (!"updated".equals(status)) {
+//                            request.setAttribute("message", status);
+//                            requestDispatcher = request.getRequestDispatcher("index.jsp");
+//                            requestDispatcher.forward(request, response);
+//                            return;
+//                        }
+//                    } else {
+//                        request.setAttribute("message", "Your Application has not yet configured to use SAML. "
+//                                + "Either configure using management console or enable dynamic saml configuration from"
+//                                + " properties file!");
+//                        requestDispatcher = request.getRequestDispatcher("index.jsp");
+//                        requestDispatcher.forward(request, response);
+//                        return;
+//                    }
+//
+//                }
 
                 if (resolver.isHttpPostBinding()) {
                     String htmlPayload = samlSSOManager.buildPostRequest(request, response, false);
@@ -190,7 +190,7 @@ public class SAML2SSOAgentFilter implements Filter {
                 return;
             }
             // pass the request along the filter chain
-            chain.doFilter(request, response);
+           
 
         } catch (InvalidSessionException e) {
             // Redirect to the index page when session is expired or user already logged out.
