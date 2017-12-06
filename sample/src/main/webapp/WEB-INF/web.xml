@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    <!--<servlet>-->
+        <!--<servlet-name>HomeServlet</servlet-name>-->
+        <!--<servlet-class>com.wijesekara.projects.demo.sso.agent.HomeServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>HomeServlet</servlet-name>-->
+        <!--<url-pattern>/home</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <filter>
+        <filter-name>SAML2SSOAgentFilter</filter-name>
+        <filter-class>org.wso2.carbon.identity.sso.agent.SAML2SSOAgentFilter</filter-class>
+    </filter>
+    <!--<filter>-->
+        <!--<filter-name>OIDCSSOAgentFilter</filter-name>-->
+        <!--<filter-class>org.wso2.carbon.identity.sso.agent.OIDCSSOAgentFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter>-->
+        <!--<filter-name>HomePageRequestFilter</filter-name>-->
+        <!--<filter-class>org.wso2.carbon.identity.sso.agent.HomePageRequestFilter</filter-class>-->
+    <!--</filter>-->
+    <filter-mapping>
+        <filter-name>SAML2SSOAgentFilter</filter-name>
+        <url-pattern>/samlsso</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SAML2SSOAgentFilter</filter-name>
+        <url-pattern>/samlcallback</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SAML2SSOAgentFilter</filter-name>
+        <url-pattern>/samllogout</url-pattern>
+    </filter-mapping>
+    <!--<filter-mapping>-->
+        <!--<filter-name>OIDCSSOAgentFilter</filter-name>-->
+        <!--<url-pattern>/oidcsso</url-pattern>-->
+    <!--</filter-mapping>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>OIDCSSOAgentFilter</filter-name>-->
+        <!--<url-pattern>/callback</url-pattern>-->
+    <!--</filter-mapping>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>HomePageRequestFilter</filter-name>-->
+        <!--<url-pattern>/home</url-pattern>-->
+    <!--</filter-mapping>-->
+    
+    <context-param>
+        <param-name>property-file</param-name>
+        <param-value>sso.properties</param-value>
+    </context-param>
+    <context-param>
+        <param-name>certificate-file</param-name>
+        <param-value>wso2carbon.jks</param-value>
+    </context-param>
+    
+    <!-- Following properties are needed at the absence of property-file context-param-->
+    <context-param>
+        <param-name>EnableSAML2SSOLogin</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>EnableOIDCSSOLogin</param-name>
+        <param-value>true</param-value>
+    </context-param>
+     <context-param>
+        <param-name>SAML2.SPEntityId</param-name>
+        <param-value>demo-sso-agent</param-value>
+    </context-param>
+    <context-param>
+        <param-name>SAML2.AssertionConsumerURL</param-name>
+        <param-value>http://localhost:8080/demo-sso-agent/samlcallback</param-value>
+    </context-param>
+    <context-param>
+        <param-name>SAML2.SLOURL</param-name>
+        <param-value>samllogout</param-value>
+    </context-param>
+    <context-param>
+        <param-name>OIDC.spName</param-name>
+        <param-value>demo-sso-agent</param-value>
+    </context-param>
+    <context-param>
+        <param-name>OIDC.ClientId</param-name>
+        <param-value>YdfHtiEzou0hVS6VbFCeQHIJfRwa</param-value>
+    </context-param>
+    <context-param>
+        <param-name>OIDC.ClientSecret</param-name>
+        <param-value>fyzN8VYrXg12bpy8DlTrpgmzpIka</param-value>
+    </context-param>
+    <context-param>
+        <param-name>OIDC.CallBackUrl</param-name>
+        <param-value>http://localhost:8080/demo-sso-agent/callback</param-value>
+    </context-param>
+    <!-- End of properties needed at the absence of property-file context-param-->
+    
+    <listener>
+        <listener-class>org.wso2.carbon.identity.sso.agent.SSOAgentContextEventListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.wso2.carbon.identity.sso.agent.session.management.SSOAgentHttpSessionListener</listener-class>
+    </listener>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
