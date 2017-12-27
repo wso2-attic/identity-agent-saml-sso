@@ -50,6 +50,7 @@ import javax.net.ssl.SSLContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -194,7 +195,7 @@ public class OpenIDManager {
 
                 // Get requested attributes using AX extension
                 if (authSuccess.hasExtension(AxMessage.OPENID_NS_AX)) {
-                    Map<String, List<String>> attributesMap = new HashMap<String, List<String>>();
+                    Map<String, List<String>> attributesMap = new HashMap<>();
                     if (ssoAgentConfig.getOpenId().getAttributesRequestor() != null) {
                         attributesRequestor = ssoAgentConfig.getOpenId().getAttributesRequestor();
                         String[] attrArray = attributesRequestor.getRequestedAttributes(authSuccess.getIdentity());
@@ -203,9 +204,7 @@ public class OpenIDManager {
                             List attributeValues = fetchResp.getAttributeValuesByTypeUri(attributesRequestor.getTypeURI(authSuccess.getIdentity(), attr));
                             if (attributeValues.get(0) instanceof String && ((String) attributeValues.get(0)).split(",").length > 1) {
                                 String[] splitString = ((String) attributeValues.get(0)).split(",");
-                                for (String part : splitString) {
-                                    attributeValues.add(part);
-                                }
+                                attributeValues.addAll(Arrays.asList(splitString));
                             }
                             if (attributeValues.get(0) != null) {
                                 attributesMap.put(attr, attributeValues);
@@ -219,16 +218,10 @@ public class OpenIDManager {
                 throw new SSOAgentException("OpenID verification failed");
             }
 
-        } catch (AssociationException e) {
-            throw new SSOAgentException("Error while verifying OpenID response", e);
-        } catch (MessageException e) {
-            throw new SSOAgentException("Error while verifying OpenID response", e);
-        } catch (DiscoveryException e) {
+        } catch (AssociationException | MessageException | DiscoveryException e) {
             throw new SSOAgentException("Error while verifying OpenID response", e);
         }
 
     }
-
-
 
 }

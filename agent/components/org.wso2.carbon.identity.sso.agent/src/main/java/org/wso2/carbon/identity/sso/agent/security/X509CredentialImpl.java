@@ -25,7 +25,6 @@ import org.opensaml.xml.security.credential.CredentialContextSet;
 import org.opensaml.xml.security.credential.UsageType;
 import org.opensaml.xml.security.x509.X509Credential;
 import org.wso2.carbon.identity.sso.agent.exception.SSOAgentException;
-import org.wso2.carbon.identity.sso.agent.security.SSOAgentX509Credential;
 
 import javax.crypto.SecretKey;
 import java.security.PrivateKey;
